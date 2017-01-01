@@ -20,9 +20,11 @@ public class BlueAutoMode extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
 
     int rangeError;
+    int angleError;
 
 
-    // Test Update
+
+
 
 
     @Override
@@ -41,25 +43,73 @@ public class BlueAutoMode extends LinearOpMode {
         // speed, front left, front right, rear left,rear right, time out in seconds
         encoderDrive(0.25, 5, 5, 5, 5, 10);
 
+
+
+        rangeError = rangeCheck(200);
+
+        if(rangeError != 0){
+            //drive the error distatance from the wall
+
+            encoderDrive(0.25,rangeError,rangeError,rangeError,rangeError, 10);
+        }
+
+
         // angle , speed
         gyroTurnRight(200, 0.25);
 
         // angle, speed
         gyroTurnLeft(180, 0.25);
 
-        rangeError = rangeCheck(200);
 
-        if(rangeError != 0){
-            encoderDrive(0.25,rangeError,rangeError,rangeError,rangeError, 10);
+        angleError = angleCheck(180);
+
+        if(angleError != 0){
+            if(angleError > 1){
+                gyroTurnRight((angleError + robot.Gyro.getHeading()), 0.25);
+            }else if(angleError < -1){
+                gyroTurnLeft((angleError + robot.Gyro.getHeading()), 0.25);
+            }
         }
+
 
         colorCheck();
         // raise both servo
 
+        encoderDrive(0.25,5,5,5,10,5);
+
+
+        /*Steps for Auto Mode
+
+        Drive X Inches
+        Turn X Angle
+        Drive X Inches
+        Turn X Angle
+        Drive X Inches
+        Check Distance from wall adjust if needed
+        Check Angle Adjust if needed
+        Check Color and Activate correct servo
+        Drive Forward then back
+        Put Severos Up
+        Strafe to other beacon
+        Check Distance from wall and adjust if needed
+        Check Angle adjust if needed
+        Check Color and Activate Correct Servo
+
+         */
+
 
     }
 
-
+    public int angleCheck(int Angle){
+        int errorAngle;
+        if((Angle +1) >= robot.Gyro.getHeading() && (Angle - 1) <= robot.Gyro.getHeading()){
+            // Do Nothing
+            return 0;
+        }else{
+            errorAngle = Angle - robot.Gyro.getHeading();
+            return errorAngle;
+        }
+    }
 
     public void colorCheck(){
         robot.Color.enableLed(true);
