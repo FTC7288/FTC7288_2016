@@ -127,7 +127,7 @@ public class BlueAutoMode extends LinearOpMode {
             // Do Nothing
             return 0;
         }else{
-            errorDistance = Math.abs(distance - (int)robot.Range.getDistance(DistanceUnit.INCH));
+            errorDistance = (int)robot.Range.getDistance(DistanceUnit.INCH) - distance;
             return errorDistance;
 
         }
