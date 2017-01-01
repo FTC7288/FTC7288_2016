@@ -102,7 +102,9 @@ public class BlueAutoMode extends LinearOpMode {
 
 
     }
-
+    /*What does this function do?
+        -
+     */
     public int angleCheck(int Angle){
         int errorAngle;
         if((Angle +1) >= robot.Gyro.getHeading() && (Angle - 1) <= robot.Gyro.getHeading()){
@@ -113,7 +115,9 @@ public class BlueAutoMode extends LinearOpMode {
             return errorAngle;
         }
     }
-
+    /*What does this function do?
+        -
+     */
     public void colorCheck(){
         robot.Color.enableLed(true);
 
@@ -123,12 +127,16 @@ public class BlueAutoMode extends LinearOpMode {
             robot.BlueServo.setPosition(servoScoringAngle);
         }
     }
-
+    /*What does this function do?
+        -
+     */
     public void servoReset(){
         robot.RedServo.setPosition(servoStartingAngle);
         robot.BlueServo.setPosition(servoStartingAngle);
     }
-
+    /*What does this function do?
+        -
+     */
     public int rangeCheck(int distance){
         int errorDistance;
         if((distance + 1) >= robot.Range.getDistance(DistanceUnit.INCH) && (distance - 1) <= robot.Range.getDistance(DistanceUnit.INCH)){
@@ -141,7 +149,9 @@ public class BlueAutoMode extends LinearOpMode {
         }
 
     }
-
+    /*What does this function do?
+        -
+     */
     public void gyroTurnRight(int TargetAngle, double speed) throws InterruptedException {
         boolean done;
         done = false;
@@ -168,7 +178,9 @@ public class BlueAutoMode extends LinearOpMode {
     }
 
 
-
+    /*What does this function do?
+        -
+     */
     public void gyroTurnLeft(int TargetAngle, double speed) throws InterruptedException {
         boolean done;
         done = false;
@@ -193,6 +205,9 @@ public class BlueAutoMode extends LinearOpMode {
             idle();
         }
     }
+    /*What does this function do?
+    -
+    */
     public void encoderDrive(double speed, double fl, double fr, double rl, double rr, double timeoutS) throws InterruptedException {
         int newFrontLeftTarget;
         int newFrontRightTarget;
