@@ -21,6 +21,8 @@ public class BlueAutoMode extends LinearOpMode {
 
     int rangeError;
     int angleError;
+    int servoStartingAngle = 0;
+    int servoScoringAngle = 90;
 
 
 
@@ -73,9 +75,10 @@ public class BlueAutoMode extends LinearOpMode {
 
 
         colorCheck();
-        // raise both servo
 
         encoderDrive(0.25,5,5,5,10,5);
+
+        servoReset();
 
 
         /*Steps for Auto Mode
@@ -114,11 +117,16 @@ public class BlueAutoMode extends LinearOpMode {
     public void colorCheck(){
         robot.Color.enableLed(true);
 
-        if(robot.Color.red() > 30){
-            //Activate Red Servo
-        }else if(robot.Color.blue() > 30){
-            //Activate Blue Servo
+        if(robot.Color.red() > 30 && robot.Color.blue() < 10){
+            robot.RedServo.setPosition(servoScoringAngle);
+        }else if(robot.Color.blue() > 30 && robot.Color.red() < 10){
+            robot.BlueServo.setPosition(servoScoringAngle);
         }
+    }
+
+    public void servoReset(){
+        robot.RedServo.setPosition(servoStartingAngle);
+        robot.BlueServo.setPosition(servoStartingAngle);
     }
 
     public int rangeCheck(int distance){
