@@ -22,9 +22,6 @@ public class HardwareAuto7288 {
     public DcMotor Intake;
     public DcMotor Shooter;
 
-    public Servo RedServo;
-    public Servo BlueServo;
-
     public ModernRoboticsI2cRangeSensor Range;
     public ModernRoboticsI2cGyro Gyro;
     public ColorSensor Color;
@@ -49,10 +46,6 @@ public class HardwareAuto7288 {
         Range = (ModernRoboticsI2cRangeSensor)hwmap.get("Range");
         Color = hwmap.colorSensor.get("Color");
 
-        RedServo = hwmap.servo.get("RedServo");
-        BlueServo = hwmap.servo.get("BlueServo");
-
-
         FrontLeft.setDirection(DcMotor.Direction.FORWARD);
         BackLeft.setDirection(DcMotor.Direction.FORWARD);
         FrontRight.setDirection(DcMotor.Direction.REVERSE);
@@ -75,8 +68,6 @@ public class HardwareAuto7288 {
         BackRight.setPower(0);
         Intake.setPower(0);
 
-        RedServo.setPosition(0);
-        BlueServo.setPosition(0);
 
     }
 
