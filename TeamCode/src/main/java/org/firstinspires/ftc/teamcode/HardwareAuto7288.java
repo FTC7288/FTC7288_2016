@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cGyro;
 import com.qualcomm.hardware.modernrobotics.ModernRoboticsI2cRangeSensor;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -25,7 +26,7 @@ public class HardwareAuto7288 {
     public Servo BlueServo;
 
     public ModernRoboticsI2cRangeSensor Range;
-    public GyroSensor Gyro;
+    public ModernRoboticsI2cGyro Gyro;
     public ColorSensor Color;
 
     private ElapsedTime period = new ElapsedTime();
@@ -44,7 +45,7 @@ public class HardwareAuto7288 {
         Intake = hwmap.dcMotor.get("Intake");
         Shooter = hwmap.dcMotor.get("Shooter");
 
-        Gyro = hwmap.gyroSensor.get("Gyro");
+        Gyro =  (ModernRoboticsI2cGyro) hwmap.get("Gyro");
         Range = (ModernRoboticsI2cRangeSensor)hwmap.get("Range");
         Color = hwmap.colorSensor.get("Color");
 
